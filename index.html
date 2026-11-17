@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Digital QR Card - Ella Andalusia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* ===== Reset & Base ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #e3f2fd, #f3e5f5);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  /* ===== Card ===== */
+  .card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    width: 360px;
+    max-width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    padding: 28px 24px 40px;
+    color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  /* ===== Logo ===== */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+  }
+  .logo-container img {
+    width: 110px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ===== Profile Section ===== */
+  .profile {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .avatar {
+    flex-shrink: 0;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background-image: url("Ella Andalusia.JPG");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  }
+  .name-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a237e;
+  }
+  .title {
+    font-size: 0.95rem;
+    color: #37474f;
+    margin-top: 5px;
+  }
+
+  /* ===== Contact Info ===== */
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #263238;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+  .contact-item:hover {
+    background: rgba(25, 118, 210, 0.1);
+    transform: translateX(4px);
+  }
+  .material-icons {
+    font-size: 22px;
+    color: #1565c0;
+  }
+
+  /* ===== QR Code ===== */
+  .qr-container {
+    align-self: center;
+    padding: 10px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 420px) {
+    .card {
+      padding: 24px 18px 32px;
+      gap: 18px;
+    }
+    .name {
+      font-size: 1.2rem;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+    }
+  }
+</style>
+</head>
+<body>
+  <article class="card" aria-label="Digital Business Card">
+    <div class="logo-container">
+      <img src="https://kemenkescorpu.kemkes.go.id/_nuxt/img/logo-corpu.76f2f73.png"
+           alt="Corporate University Logo" onerror="this.style.display='none'" />
+    </div>
+
+    <section class="profile">
+      <div class="avatar" role="img" aria-label="Profile photo"></div>
+      <div class="name-title">
+        <h1 class="name">Ns. Ella Andalusia, S.Kep, M.S.M</h1>
+        <p class="title">Policy Analyst • Head of Classical Learning Team, MoH Corporate University</p>
+      </div>
+    </section>
+
+    <p class="title">
+      Center for Learning & Development<br>
+      Ministry of Health • Republic of Indonesia
+    </p>
+
+    <div class="contact-list">
+      <a href="https://maps.app.goo.gl/HtSJfiyfEW6TtGE59" target="_blank" class="contact-item">
+        <span class="material-icons">location_on</span>
+        <span>Jl. Hang Jebat III Blok F3, Kebayoran Baru, South Jakarta</span>
+      </a>
+
+      <a href="https://wa.me/6281578983393" target="_blank" class="contact-item">
+        <span class="material-icons">phone</span>
+        <span>+62 815 7898 3393</span>
+      </a>
+
+      <a href="mailto:ella.andalussy@gmail.com" class="contact-item">
+        <span class="material-icons">email</span>
+        <span>ella.andalussy@gmail.com</span>
+      </a>
+
+      <a href="mailto:ella.andalusia@kemkes.go.id" class="contact-item">
+        <span class="material-icons">email</span>
+        <span>ella.andalusia@kemkes.go.id</span>
+      </a>
+    </div>
+
+    <div id="qrcode" class="qr-container"></div>
+  </article>
+
+  <!-- QR Code generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const fullName = "Ns.Ella Andalusia, S.Kep, M.S.M";
+    const phone = "+6281578983393";
+    const email = "ella.andalussy@gmail.com";
+    const address = "Center for Learning & Development, Ministry of Health, Republic of Indonesia, Jl. Hang Jebat III Blok F3, Kebayoran Baru, Jakarta Selatan";
+    const vCardData =
+      "BEGIN:VCARD\n" +
+      "VERSION:3.0\n" +
+      `FN:${fullName}\n` +
+      `TEL;TYPE=cell:${phone}\n` +
+      `EMAIL:${email}\n` +
+      `ADR;TYPE=home:;;${address};;;;\n` +
+      `URL:https://wa.me/6281578983393\n` +
+      "END:VCARD";
+
+    new QRCode(document.getElementById("qrcode"), {
+      text: vCardData,
+      width: 180,
+      height: 180,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+  </script>
+</body>
+</html>
+
